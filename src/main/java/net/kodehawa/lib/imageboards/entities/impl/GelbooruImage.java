@@ -33,10 +33,6 @@ public class GelbooruImage implements BoardImage {
         return hash;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String getImage() {
         return image;
     }
@@ -51,6 +47,11 @@ public class GelbooruImage implements BoardImage {
 
     public boolean isHas_children() {
         return has_children;
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 
     @Override

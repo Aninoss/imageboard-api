@@ -33,6 +33,7 @@ public class SafebooruImage implements BoardImage {
     private int height;
     private int width;
     private String tags;
+    private int score;
     @JsonProperty("id")
     private int id;
     @JsonProperty("change")
@@ -51,6 +52,11 @@ public class SafebooruImage implements BoardImage {
     }
 
     @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
     public int getWidth() {
         return width;
     }
@@ -61,16 +67,12 @@ public class SafebooruImage implements BoardImage {
     }
 
     public int getScore() {
-        return 0;
+        return score;
     }
 
     @Override
     public Rating getRating() {
         return Rating.SAFE;
-    }
-
-    public int getId(){
-        return id;
     }
 
     @Override

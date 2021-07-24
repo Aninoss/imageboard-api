@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class SafeFurryImage implements BoardImage {
+    private int id;
     @JsonProperty("created_at")
     private String created_at;
     private String description;
@@ -184,6 +185,11 @@ public class SafeFurryImage implements BoardImage {
         public boolean isDeleted() {
             return deleted;
         }
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 
     // Doesn't implement it, probably doesn't matter since it's a safe board.

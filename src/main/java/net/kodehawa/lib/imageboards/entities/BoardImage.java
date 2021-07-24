@@ -24,6 +24,11 @@ import java.util.List;
  */
 public interface BoardImage {
     /**
+     * @return Id of the image.
+     */
+    int getId();
+
+    /**
      * @return Width of the image.
      */
     int getWidth();

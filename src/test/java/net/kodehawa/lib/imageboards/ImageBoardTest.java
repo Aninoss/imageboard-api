@@ -59,6 +59,7 @@ public class ImageBoardTest {
         for (BoardImage image : images) {
             System.out.println(
                     "ImageBoard: " + image.getClass()
+                            + " " + image.getId()
                             + " " + image.getURL()
                             + " " + image.getScore()
                             + " " + image.getRating()

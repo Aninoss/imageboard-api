@@ -20,6 +20,8 @@ import net.kodehawa.lib.imageboards.entities.BoardImage;
 
 public class TagImages {
     public static void main(String[] args) {
+        ImageBoard.setUserAgent("");
+
         // Asynchronous GET
         // 20 images tagged with animal_ears
         DefaultImageBoards.KONACHAN.search(20, "animal_ears").async(images -> {
@@ -34,5 +36,7 @@ public class TagImages {
         System.out.println(image.getTags());
         System.out.println(image.getHeight());
         System.out.println(image.getWidth());
+        System.out.println(image.getId());
+        System.out.println(image.getScore());
     }
 }

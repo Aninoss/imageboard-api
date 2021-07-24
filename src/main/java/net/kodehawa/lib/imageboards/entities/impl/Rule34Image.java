@@ -29,12 +29,14 @@ import java.util.List;
  * @author Kodehawa
  */
 public class Rule34Image implements BoardImage {
+    private int id;
     private String directory;
     private String image;
     private int height;
     private String tags;
     private int width;
     private String file_url;
+    private int score;
     @JsonProperty("change")
     private long change; // timestamp in seconds
 
@@ -52,6 +54,11 @@ public class Rule34Image implements BoardImage {
     }
 
     @Override
+    public int getId() {
+        return id;
+    }
+
+    @Override
     public int getWidth() {
         return width;
     }
@@ -63,7 +70,7 @@ public class Rule34Image implements BoardImage {
 
     @Override
     public int getScore() {
-        return 0;
+        return score;
     }
 
     @Override

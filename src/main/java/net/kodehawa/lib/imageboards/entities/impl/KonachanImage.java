@@ -119,6 +119,7 @@ public class KonachanImage implements BoardImage {
         return author;
     }
 
+    @Override
     public int getId() {
         return id;
     }

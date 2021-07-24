@@ -30,6 +30,7 @@ import java.util.regex.Pattern;
  * @author Kodehawa
  */
 public class DanbooruImage implements BoardImage {
+    private int id;
     private int uploader_id;
     @JsonProperty("created_at")
     private String created_at;
@@ -186,6 +187,11 @@ public class DanbooruImage implements BoardImage {
 
     public boolean isIs_deleted() {
         return is_deleted;
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 
     @Override

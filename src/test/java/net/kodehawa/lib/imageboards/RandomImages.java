@@ -29,6 +29,7 @@ public class RandomImages {
         // Blocking GET
         // 1 random image
         BoardImage image = DefaultImageBoards.KONACHAN.get(1).blocking().get(0);
+        System.out.println(image.getId());
         System.out.println(image.getURL());
         System.out.println(image.getRating());
         System.out.println(image.getTags());
