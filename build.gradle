@@ -2,7 +2,7 @@ plugins {
     id 'com.jfrog.bintray' version '1.8.5'
     id 'java'
     id 'maven-publish'
-    id 'com.github.johnrengelman.shadow' version '7.0.0'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
 }
 
 import org.apache.tools.ant.filters.ReplaceTokens
@@ -22,12 +22,12 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.12.4'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.4'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.12.1'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.1'
     implementation 'com.squareup.okhttp3:okhttp:3.14.9'
-    implementation 'org.slf4j:slf4j-api:1.7.32'
+    implementation 'org.slf4j:slf4j-api:1.7.30'
 
-    testImplementation 'ch.qos.logback:logback-classic:1.2.5'
+    testImplementation 'ch.qos.logback:logback-classic:1.2.3'
     testImplementation 'junit:junit:4.13.2'
 }
 
