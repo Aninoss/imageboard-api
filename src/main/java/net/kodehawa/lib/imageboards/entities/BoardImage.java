@@ -26,7 +26,7 @@ public interface BoardImage {
     /**
      * @return Id of the image.
      */
-    int getId();
+    long getId();
 
     /**
      * @return Width of the image.

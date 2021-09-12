@@ -13,7 +13,7 @@ public class GelbooruImage implements BoardImage {
     private String hash;
     private int height;
     private int width;
-    private int id;
+    private long id;
     private String image;
     private String owner;
     private Rating rating;
@@ -50,7 +50,7 @@ public class GelbooruImage implements BoardImage {
     }
 
     @Override
-    public int getId() {
+    public long getId() {
         return id;
     }
 

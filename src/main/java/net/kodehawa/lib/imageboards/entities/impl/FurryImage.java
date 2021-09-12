@@ -31,7 +31,7 @@ import java.util.stream.Stream;
  * @author Kodehawa
  */
 public class FurryImage implements BoardImage {
-    private int id;
+    private long id;
     @JsonProperty("created_at")
     private String created_at;
     private String description;
@@ -191,7 +191,7 @@ public class FurryImage implements BoardImage {
     }
 
     @Override
-    public int getId() {
+    public long getId() {
         return id;
     }
 

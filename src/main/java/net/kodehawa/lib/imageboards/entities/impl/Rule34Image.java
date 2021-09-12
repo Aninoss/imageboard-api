@@ -29,7 +29,7 @@ import java.util.List;
  * @author Kodehawa
  */
 public class Rule34Image implements BoardImage {
-    private int id;
+    private long id;
     private String directory;
     private String image;
     private int height;
@@ -54,7 +54,7 @@ public class Rule34Image implements BoardImage {
     }
 
     @Override
-    public int getId() {
+    public long getId() {
         return id;
     }
 

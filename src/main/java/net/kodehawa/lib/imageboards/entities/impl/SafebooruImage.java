@@ -35,7 +35,7 @@ public class SafebooruImage implements BoardImage {
     private String tags;
     private int score;
     @JsonProperty("id")
-    private int id;
+    private long id;
     @JsonProperty("change")
     private long change; // timestamp in seconds
 
@@ -52,7 +52,7 @@ public class SafebooruImage implements BoardImage {
     }
 
     @Override
-    public int getId() {
+    public long getId() {
         return id;
     }
 

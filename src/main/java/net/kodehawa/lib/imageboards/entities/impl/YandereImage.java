@@ -34,7 +34,7 @@ public class YandereImage implements BoardImage {
     private int file_size;
     private String file_url;
     private int height;
-    private int id;
+    private long id;
     private int jpeg_file_size;
     private int jpeg_height;
     private String jpeg_url;
@@ -94,7 +94,7 @@ public class YandereImage implements BoardImage {
         return file_url;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

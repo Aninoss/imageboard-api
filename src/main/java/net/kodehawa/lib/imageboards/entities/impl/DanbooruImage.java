@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
  * @author Kodehawa
  */
 public class DanbooruImage implements BoardImage {
-    private int id;
+    private long id;
     private int uploader_id;
     @JsonProperty("created_at")
     private String created_at;
@@ -190,7 +190,7 @@ public class DanbooruImage implements BoardImage {
     }
 
     @Override
-    public int getId() {
+    public long getId() {
         return id;
     }
 

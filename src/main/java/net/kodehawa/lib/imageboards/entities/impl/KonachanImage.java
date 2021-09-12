@@ -35,7 +35,7 @@ public class KonachanImage implements BoardImage {
     private long file_size;
     private String file_url;
     private int height;
-    private int id;
+    private long id;
     private long jpeg_file_size;
     private int jpeg_height;
     private String jpeg_url;
@@ -120,7 +120,7 @@ public class KonachanImage implements BoardImage {
     }
 
     @Override
-    public int getId() {
+    public long getId() {
         return id;
     }
 
