@@ -382,4 +382,5 @@ public class ImageBoard<T extends BoardImage> {
             this.mapper = mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         }
     }
+
 }
