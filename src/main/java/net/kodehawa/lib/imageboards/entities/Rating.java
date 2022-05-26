@@ -44,7 +44,13 @@ public enum Rating {
      */
     @JsonEnumDefaultValue
     @JsonProperty("e")
-    EXPLICIT("e");
+    EXPLICIT("e"),
+
+    /**
+     * General rating, completely safe for work.
+     */
+    @JsonProperty("g")
+    GENERAL("g");
 
     String shortName, longName;
 
