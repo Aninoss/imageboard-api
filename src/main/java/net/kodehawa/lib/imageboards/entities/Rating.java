@@ -17,42 +17,46 @@
 package net.kodehawa.lib.imageboards.entities;
 
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
  * Board image ratings. Just remember that God is watching.
+ *
  * @author Avarel
  */
+@JsonDeserialize(using = RatingDeserializer.class)
 public enum Rating {
     /**
-     * Safe for family and friends. If you had any.
+     * Safe for family and friends. I'd imagine.
      */
-    @JsonProperty("s")
     SAFE("s"),
 
     /**
-     * Questionable board images. Borderline explicit.
-     * Would you show this to your grandma?
+     * Safe for family and friends. I'd imagine.
+     * DO NOT USE OUTSIDE OF GelbooruImage. This will adjust to SAFE otherwise.
      */
-    @JsonProperty("q")
+    GENERAL("g"), // Gelbooru bullshit?
+
+    /**
+     * Questionable board images. Borderline explicit.
+     */
     QUESTIONABLE("q"),
+
+    /**
+     * Sensitive board images. Borderline explicit.
+     * DO NOT USE OUTSIDE OF GelbooruImage. This will adjust to QUESTIONABLE otherwise.
+     */
+    SENSITIVE("se"), // gelbooru bullshit, part 2
 
     /**
      * Default rating, assume the worst.
      * Board images with explicit/NSFW ratings.
-     * Dirty af. Go see a therapist.
      */
     @JsonEnumDefaultValue
-    @JsonProperty("e")
-    EXPLICIT("e"),
+    EXPLICIT("e");
 
-    /**
-     * General rating, completely safe for work.
-     */
-    @JsonProperty("g")
-    GENERAL("g");
-
-    String shortName, longName;
+    final String shortName;
+    final String longName;
 
     Rating(String shortName) {
         this.shortName = shortName;
@@ -74,8 +78,8 @@ public enum Rating {
      * @return The badge, or null if nothing is found.
      */
     public static Rating lookupFromString(String name) {
-        for(Rating b : Rating.values()) {
-            if(b.name().equalsIgnoreCase(name)) {
+        for (Rating b : Rating.values()) {
+            if (b.name().equalsIgnoreCase(name)) {
                 return b;
             }
         }
@@ -89,8 +93,8 @@ public enum Rating {
      * @return The badge, or null if nothing is found.
      */
     public static Rating lookupFromStringShort(String shortName) {
-        for(Rating b : Rating.values()) {
-            if(b.getShortName().equalsIgnoreCase(shortName)) {
+        for (Rating b : Rating.values()) {
+            if (b.getShortName().equalsIgnoreCase(shortName)) {
                 return b;
             }
         }

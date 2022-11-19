@@ -20,7 +20,7 @@ import net.kodehawa.lib.imageboards.entities.BoardImage;
 
 public class TagImages {
     public static void main(String[] args) {
-        ImageBoard.setUserAgent("");
+        ImageBoard.setUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:52.0) Gecko/20100101 Firefox/52.0");
 
         // Asynchronous GET
         // 20 images tagged with animal_ears

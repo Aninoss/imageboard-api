@@ -59,7 +59,6 @@ public class ImageBoardTest {
         for (BoardImage image : images) {
             System.out.println(
                     "ImageBoard: " + image.getClass()
-                            + " " + image.getId()
                             + " " + image.getURL()
                             + " " + image.getScore()
                             + " " + image.getRating()
@@ -112,30 +111,44 @@ public class ImageBoardTest {
         String tag = "animal_ears";
         String[] knownAliases = {"animal_ear", "animal_humanoid"};
 
-        assertTrue(e621.search(1, tag).blocking().get(0).getTags().contains(tag) ||
-                e621.search(1, tag).blocking().get(0).getTags().contains(knownAliases[1]));
+        String tagRemoval = "-animal_ears humanoid";
+        String tagRemoval1 = "-animal_ears yuri";
+        String tagRemoval2 = "-animal_humanoid humanoid";
 
+        // This actually used to alias animal_ears to animal_humanoid, but it doesn't anymore (As of 08/12/2021)
+        // Nothing I can do on my side!
+        assertTrue(e621.search(1, knownAliases[1]).blocking().get(0).getTags().contains(knownAliases[1]));
         assertTrue(konachan.search(1, tag).blocking().get(0).getTags().contains(tag));
-
         assertTrue(rule34.search(1, tag).blocking().get(0).getTags().contains(tag) ||
                 rule34.search(1, tag).blocking().get(0).getTags().contains(knownAliases[0]));
 
         assertTrue(yandere.search(1, tag).blocking().get(0).getTags().contains(tag));
-
         assertTrue(danbooru.search(1, tag).blocking().get(0).getTags().contains(tag));
-
         assertTrue(safebooru.search(1, tag).blocking().get(0).getTags().contains(tag));
-
         assertTrue(yandere.search("animal_ears yuri", Rating.EXPLICIT).blocking().get(0).getTags().contains(tag));
-
         assertTrue(gelbooru.search(1, tag).blocking().get(0).getTags().contains(tag));
-        assertTrue(e926.search(1, tag).blocking().get(0).getTags().contains(tag) ||
-                e926.search(1, tag).blocking().get(0).getTags().contains(knownAliases[1]));
 
+        // Tag removal
+        assertFalse(e621.search(100, tagRemoval2).blocking().stream().anyMatch(image -> image.getTags().contains(knownAliases[1])));
+        assertFalse(konachan.search(100, tagRemoval).blocking().stream().anyMatch(image -> image.getTags().contains(tag)));
+        assertFalse(rule34.search(100, tagRemoval).blocking().stream().anyMatch(image -> image.getTags().contains(tag)));
+        assertFalse(yandere.search(100, tagRemoval).blocking().stream().anyMatch(image -> image.getTags().contains(tag)));
+        assertFalse(danbooru.search(100, tagRemoval1).blocking().stream().anyMatch(image -> image.getTags().contains(tag)));
+        assertFalse(safebooru.search(100, tagRemoval).blocking().stream().anyMatch(image -> image.getTags().contains(tag)));
+        assertFalse(yandere.search(tagRemoval1, Rating.EXPLICIT).blocking().stream().anyMatch(image -> image.getTags().contains(tag)));
+        assertFalse(gelbooru.search(100, tagRemoval).blocking().stream().anyMatch(image -> image.getTags().contains(tag)));
+
+        // Same for e961, no more tag aliases seemingly
+        assertTrue(e926.search(1, knownAliases[1]).blocking().get(0).getTags().contains(knownAliases[1]));
+        // This shouldn't fail, even if Yande.re has no GENERAL rating, as we adjust to this.
+        assertSame(yandere.search(tag, Rating.GENERAL).blocking().get(0).getRating(), Rating.SAFE);
         assertSame(yandere.search(tag, Rating.EXPLICIT).blocking().get(0).getRating(), Rating.EXPLICIT);
         assertSame(danbooru.search(tag, Rating.EXPLICIT).blocking().get(0).getRating(), Rating.EXPLICIT);
         assertSame(danbooru.search(tag, Rating.QUESTIONABLE).blocking().get(0).getRating(), Rating.QUESTIONABLE);
-        assertSame(gelbooru.search(tag, Rating.SAFE).blocking().get(0).getRating(), Rating.SAFE);
+        // This shouldn't fail even though Gelbooru has no SAFE rating, as we adjust to this.
+        assertSame(gelbooru.search(tag, Rating.SAFE).blocking().get(0).getRating(), Rating.GENERAL);
+        assertSame(gelbooru.search(tag, Rating.SENSITIVE).blocking().get(0).getRating(), Rating.SENSITIVE);
+        assertSame(gelbooru.search(tag, Rating.QUESTIONABLE).blocking().get(0).getRating(), Rating.QUESTIONABLE);
         assertSame(gelbooru.search(tag, Rating.EXPLICIT).blocking().get(0).getRating(), Rating.EXPLICIT);
         assertSame(gelbooru.search(tag, Rating.QUESTIONABLE).blocking().get(0).getRating(), Rating.QUESTIONABLE);
         assertSame(konachan.search(tag, Rating.EXPLICIT).blocking().get(0).getRating(), Rating.EXPLICIT);
