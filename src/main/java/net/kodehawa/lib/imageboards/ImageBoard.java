@@ -381,12 +381,13 @@ public class ImageBoard<T extends BoardImage> {
     /**
      * The type of the specified ImageBoard.
      * This is important because if you specify the wrong type, it'll be impossible to deserialize it properly.
-     * For now we only have JSON, as all imageboards now support a JSON response.
-     * If your imageboard doesn't by default, make sure it's an option.
      */
     public enum ResponseFormat {
         /** JSON response type. */
-        JSON(new ObjectMapper());
+        JSON(new ObjectMapper()),
+
+        /** XML response type. */
+        XML(new CustomXmlMapper());
 
         private final ObjectMapper mapper;
 
